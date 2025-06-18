@@ -7,86 +7,109 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-6">
-  <div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
+  <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
     <h2 class="text-2xl font-bold mb-4">Student Registration Form</h2>
-    <form id="studentRegisterForm" class="space-y-4">
-      <!-- Student Info -->
+    
+    <form id="studentRegisterForm" enctype="multipart/form-data" method="POST">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <input type="text" id="firstName" placeholder="First Name" required class="border p-2 rounded" />
-        <input type="text" id="lastName" placeholder="Last Name" required class="border p-2 rounded" />
-        <input type="date" id="dob" required class="border p-2 rounded" />
-        <select id="gender" required class="border p-2 rounded">
+        <!-- Student Info -->
+        <input type="text" name="firstName" placeholder="First Name" required class="border p-2 rounded" />
+        <input type="text" name="lastName" placeholder="Last Name" required class="border p-2 rounded" />
+        <input type="date" name="dob" required class="border p-2 rounded" />
+        <select name="gender" required class="border p-2 rounded">
           <option value="">Select Gender</option>
           <option>Male</option>
           <option>Female</option>
         </select>
-        <input type="text" id="address" placeholder="Residential Address" required class="border p-2 rounded col-span-2" />
-        <input type="file" class="border p-2 rounded col-span-2" />
-      </div>
+        <input type="text" name="address" placeholder="Residential Address" required class="border p-2 rounded col-span-2" />
+        <input type="file" name="passportPhoto" class="border p-2 rounded col-span-2" />
 
-      <!-- Academic (still here, but can remove if needed) -->
-      <div class="pt-4 border-t">
-        <h3 class="text-lg font-semibold">Academic Information</h3>
-        <select class="border p-2 rounded w-full">
+        <!-- Academic Info -->
+        <select name="grade" required class="border p-2 rounded col-span-2">
           <option value="">Select Grade</option>
           <option>Grade 7</option>
           <option>Grade 8</option>
           <option>Grade 9</option>
           <option>Grade 10</option>
+          <option>Grade 11</option>
+          <option>Grade 12</option>
         </select>
-        <input type="text" placeholder="Previous School" class="border p-2 rounded w-full" />
-        <input type="text" placeholder="Reason for Transfer" class="border p-2 rounded w-full" />
-      </div>
+        <input type="text" name="previousSchool" placeholder="Previous School" class="border p-2 rounded col-span-2" />
+        <input type="text" name="transferReason" placeholder="Reason for Transfer" class="border p-2 rounded col-span-2" />
 
-      <!-- Parent -->
-      <div class="pt-4 border-t">
-        <h3 class="text-lg font-semibold">Parent/Guardian Information</h3>
-        <input type="text" placeholder="Full Name" class="border p-2 rounded w-full" />
-        <select class="border p-2 rounded w-full">
+        <!-- Parent Info -->
+        <input type="text" name="parentName" placeholder="Parent/Guardian Full Name" required class="border p-2 rounded col-span-2" />
+        <select name="parentRelationship" required class="border p-2 rounded col-span-2">
           <option value="">Select Relationship</option>
           <option>Father</option>
           <option>Mother</option>
           <option>Guardian</option>
         </select>
-        <input type="email" placeholder="Email Address" class="border p-2 rounded w-full" />
-        <input type="tel" placeholder="Phone Number" class="border p-2 rounded w-full" />
-        <input type="text" placeholder="Occupation" class="border p-2 rounded w-full" />
+        <input type="email" name="parentEmail" placeholder="Email Address" required class="border p-2 rounded col-span-2" />
+        <input type="tel" name="parentPhone" placeholder="Phone Number" required class="border p-2 rounded col-span-2" />
+        <input type="text" name="parentOccupation" placeholder="Occupation" required class="border p-2 rounded col-span-2" />
+
+        <!-- Documents Upload + PDF Preview -->
+        <label class="col-span-2 font-semibold mt-4">Birth Certificate (PDF)</label>
+        <input type="file" name="birthCert" id="birthCertInput" accept=".pdf" class="border p-2 rounded col-span-2" />
+        <iframe id="birthCertPreview" class="w-full h-48 mt-2 rounded hidden col-span-2" frameborder="0"></iframe>
+
+        <label class="col-span-2 font-semibold mt-4">Most Recent Report Card (PDF)</label>
+        <input type="file" name="reportCard" id="reportCardInput" accept=".pdf" class="border p-2 rounded col-span-2" />
+        <iframe id="reportCardPreview" class="w-full h-48 mt-2 rounded hidden col-span-2" frameborder="0"></iframe>
+
+        <label class="col-span-2 font-semibold mt-4">Recommendation Letter (Optional - PDF)</label>
+        <input type="file" name="recommendation" id="recommendationInput" accept=".pdf" class="border p-2 rounded col-span-2" />
+        <iframe id="recommendationPreview" class="w-full h-48 mt-2 rounded hidden col-span-2" frameborder="0"></iframe>
       </div>
 
-      <!-- Documents -->
-      <div class="pt-4 border-t">
-        <h3 class="text-lg font-semibold">Required Documents</h3>
-        <input type="file" class="border p-2 rounded w-full" />
-        <input type="file" class="border p-2 rounded w-full" />
-        <input type="file" class="border p-2 rounded w-full" />
-      </div>
-
-      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Register Student</button>
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full mt-6">Register Student</button>
     </form>
+
+    <div id="message" class="mt-4 text-center text-sm"></div>
   </div>
 
-  <!-- WORKING SCRIPT -->
+  <!-- PDF Preview Script -->
   <script>
+    function previewPDF(inputId, previewId) {
+      const input = document.getElementById(inputId);
+      const preview = document.getElementById(previewId);
+
+      input.addEventListener('change', () => {
+        const file = input.files[0];
+        if (file && file.type === "application/pdf") {
+          const fileURL = URL.createObjectURL(file);
+          preview.src = fileURL;
+          preview.classList.remove('hidden');
+        } else {
+          preview.src = '';
+          preview.classList.add('hidden');
+        }
+      });
+    }
+
+    previewPDF('birthCertInput', 'birthCertPreview');
+    previewPDF('reportCardInput', 'reportCardPreview');
+    previewPDF('recommendationInput', 'recommendationPreview');
+
+    // Form submission
     document.getElementById('studentRegisterForm').addEventListener('submit', async function (e) {
       e.preventDefault();
-
-      const firstName = document.getElementById('firstName').value;
-      const lastName = document.getElementById('lastName').value;
-      const dob = document.getElementById('dob').value;
-      const gender = document.getElementById('gender').value;
-      const address = document.getElementById('address').value;
+      const form = e.target;
+      const formData = new FormData(form);
 
       try {
-        const res = await fetch('http://localhost:3000/register-student', {
+        fetch('https://your-app-name.onrender.com/register-student', {
+
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ firstName, lastName, dob, gender, address })
+          body: formData
         });
 
         const data = await res.json();
         if (res.ok) {
           alert("✅ " + data.message);
-          this.reset();
+          form.reset();
+          document.querySelectorAll('iframe').forEach(i => i.classList.add('hidden'));
         } else {
           alert("❌ " + data.message);
         }
