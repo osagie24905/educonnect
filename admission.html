@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Future Secondary School - Admission Portal</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f9fc;
+        }
+
+        header {
+            background-color: #1a5276;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            color: #aed6f1;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            background-color: #2980b9;
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .application-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .application-form h2 {
+            margin-bottom: 1.5rem;
+            color: #1a5276;
+            border-bottom: 2px solid #aed6f1;
+            padding-bottom: 0.5rem;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h3 {
+            color: #2980b9;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .form-group.checkbox {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group.checkbox input {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+
+        .form-group.checkbox label {
+            margin-bottom: 0;
+            font-weight: normal;
+        }
+
+        .submit-btn {
+            background-color: #1a5276;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+            display: block;
+            margin: 2rem auto 0;
+            width: 200px;
+            text-align: center;
+        }
+
+        .submit-btn:hover {
+            background-color: #154360;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #1a5276;
+            color: white;
+            margin-top: 3rem;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 3px 20px rgba(0,0,0,0.2);
+        }
+
+        .modal-content h2 {
+            color: #1a5276;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .close-btn {
+            background-color: #1a5276;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Admin panel styles */
+        .admin-panel {
+            display: none;
+            margin-top: 2rem;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-panel h2 {
+            color: #1a5276;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #aed6f1;
+            padding-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #1a5276;
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f9ff;
+        }
+
+        tr:hover {
+            background-color: #e6f2ff;
+        }
+
+        .admin-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 100;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Passport photo preview styles */
+        #passportPreview {
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        #previewImage {
+            max-width: 150px;
+            max-height: 150px;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .form-group input[type="file"] {
+            padding: 0.5rem;
+            border: 1px dashed #ddd;
+            background-color: #f9f9f9;
+        }
+
+        .form-group input[type="file"]:focus {
+            border-color: #3498db;
+            border-style: solid;
+        }
+
+        /* Application status badge */
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .status-pending {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .status-approved {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        .status-rejected {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        /* Print styles */
+        @media print {
+            nav, .admin-toggle, footer {
+                display: none !important;
+            }
+
+            .application-form {
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .submit-btn {
+                display: none !important;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                margin-bottom: 1rem;
+                justify-content: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://via.placeholder.com/50x50?text=BFSS" alt="School Logo">
+            Bright Future Secondary School
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Admission</a></li>
+                <li><a href="#">Academics</a></li>
+                <li><a href="#">Facilities</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>2024-2025 Admission Now Open</h1>
+            <p>Join Bright Future Secondary School for quality education and holistic development</p>
+        </section>
+
+        <section class="application-form">
+            <h2>Student Admission Form</h2>
+            
+            <form id="admissionForm">
+                <!-- Student Information Section -->
+                <div class="form-section">
+                    <h3>Student Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Residential Address</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passportPhoto">Passport Photo</label>
+                        <input type="file" id="passportPhoto" name="passportPhoto" accept=".jpg,.jpeg,.png" required>
+                        <div id="passportPreview">
+                            <img id="previewImage" src="#" alt="Passport Preview">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Academic Information Section -->
+                <div class="form-section">
+                    <h3>Academic Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="grade">Grade Applying For</label>
+                            <select id="grade" name="grade" required>
+                                <option value="">Select Grade</option>
+                                <option value="7">Grade 7</option>
+                                <option value="8">Grade 8</option>
+                                <option value="9">Grade 9</option>
+                                <option value="10">Grade 10</option>
+                                <option value="11">Grade 11</option>
+                                <option value="12">Grade 12</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="previousSchool">Previous School</label>
+                            <input type="text" id="previousSchool" name="previousSchool" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reasonForTransfer">Reason for Transfer (if applicable)</label>
+                        <textarea id="reasonForTransfer" name="reasonForTransfer" rows="2"></textarea>
+                    </div>
+                </div>
+                
+                <!-- Parent/Guardian Information -->
+                <div class="form-section">
+                    <h3>Parent/Guardian Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parentName">Parent/Guardian Full Name</label>
+                            <input type="text" id="parentName" name="parentName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parentRelationship">Relationship to Student</label>
+                            <select id="parentRelationship" name="parentRelationship" required>
+                                <option value="">Select Relationship</option>
+                                <option value="mother">Mother</option>
+                                <option value="father">Father</option>
+                                <option value="guardian">Guardian</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parentEmail">Email Address</label>
+                            <input type="email" id="parentEmail" name="parentEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parentPhone">Phone Number</label>
+                            <input type="tel" id="parentPhone" name="parentPhone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="parentOccupation">Occupation</label>
+                        <input type="text" id="parentOccupation" name="parentOccupation">
+                    </div>
+                </div>
+                
+                <!-- Documents Upload -->
+                <div class="form-section">
+                    <h3>Required Documents</h3>
+                    <div class="form-group">
+                        <label for="birthCertificate">Birth Certificate</label>
+                        <input type="file" id="birthCertificate" name="birthCertificate" accept=".pdf,.jpg,.png" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reportCard">Most Recent Report Card</label>
+                        <input type="file" id="reportCard" name="reportCard" accept=".pdf,.jpg,.png" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recommendationLetter">Recommendation Letter (Optional)</label>
+                        <input type="file" id="recommendationLetter" name="recommendationLetter" accept=".pdf,.jpg,.png">
+                    </div>
+                </div>
+                
+                <!-- Terms and Conditions -->
+                <div class="form-section">
+                    <h3>Declaration</h3>
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="declaration" name="declaration" required>
+                        <label for="declaration">I declare that all information provided is true and accurate to the best of my knowledge. I understand that providing false information may result in the rejection of this application.</label>
+                    </div>
+                    
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="permission" name="permission" required>
+                        <label for="permission">I give permission for Bright Future Secondary School to contact the previous school for verification of academic records.</label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+        </section>
+
+        <!-- Admin Panel -->
+        <section class="admin-panel" id="adminPanel">
+            <h2>Admission Applications</h2>
+            <table id="applicationsTable">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Grade</th>
+                        <th>Parent Name</th>
+                        <th>Contact</th>
+                        <th>Photo</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="applicationsList">
+                    <!-- Applications will be added here dynamically -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmationModal">
+        <div class="modal-content">
+            <h2>Application Submitted Successfully!</h2>
+            <p id="confirmationMessage"></p>
+            <p>Your application reference number is: <strong id="referenceNumber"></strong></p>
+            <p>We will contact you within 7 working days regarding the next steps.</p>
+            <button class="close-btn" id="closeModal">Close</button>
+            <button class="close-btn" id="printApplication" style="background-color: #27ae60; margin-left: 10px;">Print Application</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Bright Future Secondary School &copy; 2024 | Address: 123 Education Street, Learning City | Phone: (123) 456-7890</p>
+    </footer>
+
+    <!-- Admin Toggle Button -->
+    <button class="admin-toggle" id="adminToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm12-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1z"/>
+        </svg>
+        Admin
+    </button>
+
+    <script>
+        // Store applications in memory (in a real app, this would be a database)
+        const applications = [];
+        
+        // DOM elements
+        const form = document.getElementById('admissionForm');
+        const modal = document.getElementById('confirmationModal');
+        const closeModal = document.getElementById('closeModal');
+        const confirmationMessage = document.getElementById('confirmationMessage');
+        const referenceNumber = document.getElementById('referenceNumber');
+        const adminPanel = document.getElementById('adminPanel');
+        const adminToggle = document.getElementById('adminToggle');
+        const applicationsList = document.getElementById('applicationsList');
+        const printApplication = document.getElementById('printApplication');
+        const passportPhoto = document.getElementById('passportPhoto');
+        const passportPreview = document.getElementById('passportPreview');
+        const previewImage = document.getElementById('previewImage');
+        
+        // Initially hide passport preview
+        passportPreview.style.display = 'none';
+
+        // Passport photo preview
+        passportPhoto.addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                
+                // Validate file type
+                const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+                if (!validTypes.includes(file.type)) {
+                    alert('Please upload a valid image file (JPEG, JPG, or PNG)');
+                    e.target.value = '';
+                    passportPreview.style.display = 'none';
+                    return;
+                }
+                
+                // Validate file size (max 2MB)
+                if (file.size > 2 * 1024 * 1024) {
+                    alert('Image size should be less than 2MB');
+                    e.target.value = '';
+                    passportPreview.style.display = 'none';
+                    return;
+                }
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(event) {
+                    previewImage.src = event.target.result;
+                    passportPreview.style.display = 'block';
+                }
+                
+                reader.readAsDataURL(file);
+            } else {
+                passportPreview.style.display = 'none';
+            }
+        });
+        
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const dob = document.getElementById('dob').value;
+            const gender = document.getElementById('gender').value;
+            const address = document.getElementById('address').value;
+            const grade = document.getElementById('grade').value;
+            const previousSchool = document.getElementById('previousSchool').value;
+            const reasonForTransfer = document.getElementById('reasonForTransfer').value;
+            const parentName = document.getElementById('parentName').value;
+            const parentRelationship = document.getElementById('parentRelationship').value;
+            const parentEmail = document.getElementById('parentEmail').value;
+            const parentPhone = document.getElementById('parentPhone').value;
+            const parentOccupation = document.getElementById('parentOccupation').value;
+            const date = new Date().toLocaleDateString();
+            
+            // Generate reference number
+            const refNumber = 'BFSS-' + Math.floor(100000 + Math.random() * 900000);
+            
+            // Create application object
+            const application = {
+                id: Date.now(),
+                firstName,
+                lastName,
+                dob,
+                gender,
+                address,
+                grade,
+                previousSchool,
+                reasonForTransfer,
+                parentName,
+                parentRelationship,
+                parentEmail,
+                parentPhone,
+                parentOccupation,
+                passportPhoto: previewImage.src || '',
+                date,
+                refNumber,
+                status: 'pending'
+            };
+            
+            // Add to applications array
+            applications.push(application);
+            
+            // Update admin panel
+            updateApplicationsTable();
+            
+            // Show confirmation message
+            confirmationMessage.textContent = `Thank you for applying to Bright Future Secondary School, ${firstName} ${lastName}!`;
+            referenceNumber.textContent = refNumber;
+            modal.style.display = 'flex';
+            
+            // Reset form
+            form.reset();
+            passportPreview.style.display = 'none';
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        // Print application
+        printApplication.addEventListener('click', function() {
+            window.print();
+        });
+        
+        // Toggle admin panel
+        adminToggle.addEventListener('click', function() {
+            adminPanel.style.display = adminPanel.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        // Update applications table
+        function updateApplicationsTable() {
+            applicationsList.innerHTML = '';
+            
+            applications.forEach(app => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${app.firstName} ${app.lastName}</td>
+                    <td>Grade ${app.grade}</td>
+                    <td>${app.parentName} (${app.parentRelationship})</td>
+                    <td>${app.parentPhone}<br>${app.parentEmail}</td>
+                    <td>${app.passportPhoto ? `<img src="${app.passportPhoto}" style="max-width: 50px; max-height: 50px; border-radius: 4px;">` : 'No photo'}</td>
+                    <td><span class="status-badge status-${app.status}">${app.status.charAt(0).toUpperCase() + app.status.slice(1)}</span></td>
+                    <td>${app.date}</td>
+                `;
+                applicationsList.appendChild(row);
+            });
+        }
+        
+        // Sample data for demo
+        applications.push(
+            {
+                id: 1,
+                firstName: "John",
+                lastName: "Doe",
+                dob: "2010-05-15",
+                gender: "male",
+                address: "123 Main Street, Cityville",
+                grade: "8",
+                previousSchool: "Cityville Primary School",
+                reasonForTransfer: "Relocation",
+                parentName: "Jane Doe",
+                parentRelationship: "mother",
+                parentEmail: "jane.doe@example.com",
+                parentPhone: "1234567890",
+                parentOccupation: "Teacher",
+                passportPhoto: "https://via.placeholder.com/150?text=John+Doe",
+                date: "05/15/2024",
+                refNumber: "BFSS-123456",
+                status: "approved"
+            },
+            {
+                id: 2,
+                firstName: "Sarah",
+                lastName: "Smith",
+                dob: "2011-08-22",
+                gender: "female",
+                address: "456 Oak Avenue, Townsville",
+                grade: "7",
+                previousSchool: "Townsville Elementary",
+                reasonForTransfer: "Seeking better academic program",
+                parentName: "Michael Smith",
+                parentRelationship: "father",
+                parentEmail: "michael.smith@example.com",
+                parentPhone: "9876543210",
+                parentOccupation: "Engineer",
+                passportPhoto: "https://via.placeholder.com/150?text=Sarah+Smith",
+                date: "05/18/2024",
+                refNumber: "BFSS-654321",
+                status: "pending"
+            }
+        );
+        
+        // Initialize table with sample data
+        updateApplicationsTable();
+    </script>
+</body>
+</html>

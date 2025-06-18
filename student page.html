@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* Animation for notifications */
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        
+        .notification {
+            animation: slideIn 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Header -->
+    <header class="bg-indigo-700 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-graduation-cap text-2xl"></i>
+                <h1 class="text-xl font-bold">Student Portal</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <button id="notificationBtn" class="relative p-2 rounded-full hover:bg-indigo-600">
+                        <i class="fas fa-bell"></i>
+                        <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500"></span>
+                    </button>
+                    <div id="notificationDropdown" class="hidden absolute right-0 mt-2 w-72 bg-white text-gray-800 rounded-md shadow-lg z-10">
+                        <div class="p-3 border-b border-gray-200">
+                            <h3 class="font-semibold">Notifications</h3>
+                        </div>
+                        <div class="max-h-60 overflow-y-auto">
+                            <div class="p-3 border-b border-gray-200 hover:bg-gray-100">
+                                <p class="text-sm">New assignment posted in Math 101</p>
+                                <p class="text-xs text-gray-500">10 minutes ago</p>
+                            </div>
+                            <div class="p-3 border-b border-gray-200 hover:bg-gray-100">
+                                <p class="text-sm">Your grade for History 201 has been updated</p>
+                                <p class="text-xs text-gray-500">2 hours ago</p>
+                            </div>
+                            <div class="p-3 hover:bg-gray-100">
+                                <p class="text-sm">Campus event tomorrow at 3 PM</p>
+                                <p class="text-xs text-gray-500">5 hours ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <button id="profileBtn" class="flex items-center space-x-2">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile" class="w-8 h-8 rounded-full object-cover">
+                        <span class="hidden md:inline">Sarah Johnson</span>
+                    </button>
+                    <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded-md shadow-lg z-10">
+                        <div class="p-3 border-b border-gray-200">
+                            <p class="font-semibold">Sarah Johnson</p>
+                            <p class="text-xs text-gray-500">Computer Science</p>
+                        </div>
+                        <a href="#" class="block px-3 py-2 hover:bg-gray-100">Profile</a>
+                        <a href="#" class="block px-3 py-2 hover:bg-gray-100">Settings</a>
+                        <a href="#" class="block px-3 py-2 hover:bg-gray-100 border-t border-gray-200">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar and Main Content -->
+    <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row gap-6">
+        <!-- Sidebar -->
+        <aside class="w-full md:w-64 bg-white rounded-lg shadow-md p-4 h-fit">
+            <div class="flex flex-col items-center mb-6">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile" class="w-24 h-24 rounded-full object-cover border-4 border-indigo-200 mb-3">
+                <h2 class="text-xl font-bold">Sarah Johnson</h2>
+                <p class="text-gray-600 text-sm">Computer Science</p>
+                <p class="text-gray-500 text-xs">ID: 20230045</p>
+            </div>
+            
+            <nav class="space-y-1">
+                <a href="#" class="flex items-center space-x-3 p-3 bg-indigo-100 text-indigo-700 rounded-lg">
+                    <i class="fas fa-home w-5"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 p-3 hover:bg-gray-100 rounded-lg">
+                    <i class="fas fa-book w-5"></i>
+                    <span>Courses</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 p-3 hover:bg-gray-100 rounded-lg">
+                    <i class="fas fa-chart-bar w-5"></i>
+                    <span>Grades</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 p-3 hover:bg-gray-100 rounded-lg">
+                    <i class="fas fa-calendar w-5"></i>
+                    <span>Schedule</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 p-3 hover:bg-gray-100 rounded-lg">
+                    <i class="fas fa-file-alt w-5"></i>
+                    <span>Assignments</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 p-3 hover:bg-gray-100 rounded-lg">
+                    <i class="fas fa-cog w-5"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 space-y-6">
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow-md flex items-center space-x-4">
+                    <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                        <i class="fas fa-book-open text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm">Current Courses</p>
+                        <p class="text-xl font-bold">5</p>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md flex items-center space-x-4">
+                    <div class="p-3 rounded-full bg-green-100 text-green-600">
+                        <i class="fas fa-check-circle text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm">Completed</p>
+                        <p class="text-xl font-bold">12</p>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md flex items-center space-x-4">
+                    <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                        <i class="fas fa-star text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm">GPA</p>
+                        <p class="text-xl font-bold">3.75</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Courses -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold">Current Courses</h2>
+                    <a href="#" class="text-indigo-600 hover:underline text-sm">View All</a>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Course</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Instructor</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Schedule</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="font-medium">CS 401 - Advanced Programming</div>
+                                    <div class="text-sm text-gray-500">Computer Science</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm">Dr. Robert Chen</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm">Mon/Wed 10:00 AM</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 45%"></div>
+                                    </div>
+                                    <span class="text-xs text-gray-500 mt-1">45% complete</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="font-medium">MATH 301 - Linear Algebra</div>
+                                    <div class="text-sm text-gray-500">Mathematics</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm">Prof. Angela Smith</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm">Tue/Thu 1:00 PM</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-green-600 h-2.5 rounded-full" style="width: 78%"></div>
+                                    </div>
+                                    <span class="text-xs text-gray-500 mt-1">78% complete</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="font-medium">ENG 210 - Technical Writing</div>
+                                    <div class="text-sm text-gray-500">English</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm">Dr. James Wilson</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm">Fri 9:00 AM</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 30%"></div>
+                                    </div>
+                                    <span class="text-xs text-gray-500 mt-1">30% complete</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Upcoming Assignments and Calendar -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Upcoming Assignments -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">Upcoming Assignments</h2>
+                        <a href="#" class="text-indigo-600 hover:underline text-sm">View All</a>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="p-2 rounded-full bg-red-100 text-red-600 mr-3">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium">CS 401 - Project Proposal</h3>
+                                <p class="text-sm text-gray-600">Due tomorrow at 11:59 PM</p>
+                            </div>
+                            <button class="text-gray-400 hover:text-gray-600">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-start p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="p-2 rounded-full bg-blue-100 text-blue-600 mr-3">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium">MATH 301 - Problem Set 5</h3>
+                                <p class="text-sm text-gray-600">Due in 3 days</p>
+                            </div>
+                            <button class="text-gray-400 hover:text-gray-600">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-start p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="p-2 rounded-full bg-purple-100 text-purple-600 mr-3">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium">ENG 210 - Research Paper</h3>
+                                <p class="text-sm text-gray-600">Due next week</p>
+                            </div>
+                            <button class="text-gray-400 hover:text-gray-600">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Calendar -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">Calendar</h2>
+                        <div class="flex space-x-2">
+                            <button class="p-1 rounded-full hover:bg-gray-100">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <span class="font-medium">November 2023</span>
+                            <button class="p-1 rounded-full hover:bg-gray-100">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-7 gap-1 mb-2">
+                        <div class="text-center text-xs font-medium text-gray-500 py-1">Sun</div>
+                        <div class="text-center text-xs font-medium text-gray-500 py-1">Mon</div>
+                        <div class="text-center text-xs font-medium text-gray-500 py-1">Tue</div>
+                        <div class="text-center text-xs font-medium text-gray-500 py-1">Wed</div>
+                        <div class="text-center text-xs font-medium text-gray-500 py-1">Thu</div>
+                        <div class="text-center text-xs font-medium text-gray-500 py-1">Fri</div>
+                        <div class="text-center text-xs font-medium text-gray-500 py-1">Sat</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-7 gap-1">
+                        <div class="h-10"></div>
+                        <div class="h-10"></div>
+                        <div class="h-10"></div>
+                        <div class="h-10 flex items-center justify-center text-sm">1</div>
+                        <div class="h-10 flex items-center justify-center text-sm">2</div>
+                        <div class="h-10 flex items-center justify-center text-sm">3</div>
+                        <div class="h-10 flex items-center justify-center text-sm">4</div>
+                        <div class="h-10 flex items-center justify-center text-sm">5</div>
+                        <div class="h-10 flex items-center justify-center text-sm">6</div>
+                        <div class="h-10 flex items-center justify-center text-sm">7</div>
+                        <div class="h-10 flex items-center justify-center text-sm">8</div>
+                        <div class="h-10 flex items-center justify-center text-sm">9</div>
+                        <div class="h-10 flex items-center justify-center text-sm">10</div>
+                        <div class="h-10 flex items-center justify-center text-sm">11</div>
+                        <div class="h-10 flex items-center justify-center text-sm">12</div>
+                        <div class="h-10 flex items-center justify-center bg-indigo-100 text-indigo-700 font-medium rounded-full text-sm">13</div>
+                        <div class="h-10 flex items-center justify-center text-sm">14</div>
+                        <div class="h-10 flex items-center justify-center text-sm">15</div>
+                        <div class="h-10 flex items-center justify-center text-sm">16</div>
+                        <div class="h-10 flex items-center justify-center text-sm">17</div>
+                        <div class="h-10 flex items-center justify-center text-sm">18</div>
+                        <div class="h-10 flex items-center justify-center text-sm">19</div>
+                        <div class="h-10 flex items-center justify-center text-sm">20</div>
+                        <div class="h-10 flex items-center justify-center text-sm">21</div>
+                        <div class="h-10 flex items-center justify-center text-sm">22</div>
+                        <div class="h-10 flex items-center justify-center text-sm">23</div>
+                        <div class="h-10 flex items-center justify-center text-sm">24</div>
+                        <div class="h-10 flex items-center justify-center text-sm">25</div>
+                        <div class="h-10 flex items-center justify-center text-sm">26</div>
+                        <div class="h-10 flex items-center justify-center text-sm">27</div>
+                        <div class="h-10 flex items-center justify-center text-sm">28</div>
+                        <div class="h-10 flex items-center justify-center text-sm">29</div>
+                        <div class="h-10 flex items-center justify-center text-sm">30</div>
+                    </div>
+                    
+                    <div class="mt-4 space-y-2">
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 rounded-full bg-indigo-600 mr-2"></div>
+                            <span class="text-sm">CS 401 - Midterm Exam</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 rounded-full bg-green-600 mr-2"></div>
+                            <span class="text-sm">MATH 301 - Quiz</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notificationToast" class="fixed bottom-4 right-4 hidden">
+        <div class="notification bg-white p-4 rounded-lg shadow-lg max-w-xs flex items-start">
+            <div class="p-2 rounded-full bg-blue-100 text-blue-600 mr-3">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div>
+                <p class="font-medium">New Announcement</p>
+                <p class="text-sm text-gray-600">Library will be closed tomorrow for maintenance</p>
+            </div>
+            <button onclick="hideNotification()" class="ml-4 text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Toggle dropdowns
+        document.getElementById('notificationBtn').addEventListener('click', function() {
+            document.getElementById('notificationDropdown').classList.toggle('hidden');
+            document.getElementById('profileDropdown').classList.add('hidden');
+        });
+        
+        document.getElementById('profileBtn').addEventListener('click', function() {
+            document.getElementById('profileDropdown').classList.toggle('hidden');
+            document.getElementById('notificationDropdown').classList.add('hidden');
+        });
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('#notificationBtn') && !event.target.closest('#notificationDropdown')) {
+                document.getElementById('notificationDropdown').classList.add('hidden');
+            }
+            
+            if (!event.target.closest('#profileBtn') && !event.target.closest('#profileDropdown')) {
+                document.getElementById('profileDropdown').classList.add('hidden');
+            }
+        });
+        
+        // Show notification toast after page loads
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('notificationToast').classList.remove('hidden');
+            }, 2000);
+        });
+        
+        function hideNotification() {
+            document.getElementById('notificationToast').classList.add('hidden');
+        }
+        
+        // Mobile menu toggle would go here if needed
+    </script>
+</body>
+</html>

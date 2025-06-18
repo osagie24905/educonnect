@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Registration</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+  <div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
+    <h2 class="text-2xl font-bold mb-4">Student Registration Form</h2>
+    <form id="studentRegisterForm" class="space-y-4">
+      <!-- Student Info -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input type="text" id="firstName" placeholder="First Name" required class="border p-2 rounded" />
+        <input type="text" id="lastName" placeholder="Last Name" required class="border p-2 rounded" />
+        <input type="date" id="dob" required class="border p-2 rounded" />
+        <select id="gender" required class="border p-2 rounded">
+          <option value="">Select Gender</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+        <input type="text" id="address" placeholder="Residential Address" required class="border p-2 rounded col-span-2" />
+        <input type="file" class="border p-2 rounded col-span-2" />
+      </div>
+
+      <!-- Academic (still here, but can remove if needed) -->
+      <div class="pt-4 border-t">
+        <h3 class="text-lg font-semibold">Academic Information</h3>
+        <select class="border p-2 rounded w-full">
+          <option value="">Select Grade</option>
+          <option>Grade 7</option>
+          <option>Grade 8</option>
+          <option>Grade 9</option>
+          <option>Grade 10</option>
+        </select>
+        <input type="text" placeholder="Previous School" class="border p-2 rounded w-full" />
+        <input type="text" placeholder="Reason for Transfer" class="border p-2 rounded w-full" />
+      </div>
+
+      <!-- Parent -->
+      <div class="pt-4 border-t">
+        <h3 class="text-lg font-semibold">Parent/Guardian Information</h3>
+        <input type="text" placeholder="Full Name" class="border p-2 rounded w-full" />
+        <select class="border p-2 rounded w-full">
+          <option value="">Select Relationship</option>
+          <option>Father</option>
+          <option>Mother</option>
+          <option>Guardian</option>
+        </select>
+        <input type="email" placeholder="Email Address" class="border p-2 rounded w-full" />
+        <input type="tel" placeholder="Phone Number" class="border p-2 rounded w-full" />
+        <input type="text" placeholder="Occupation" class="border p-2 rounded w-full" />
+      </div>
+
+      <!-- Documents -->
+      <div class="pt-4 border-t">
+        <h3 class="text-lg font-semibold">Required Documents</h3>
+        <input type="file" class="border p-2 rounded w-full" />
+        <input type="file" class="border p-2 rounded w-full" />
+        <input type="file" class="border p-2 rounded w-full" />
+      </div>
+
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Register Student</button>
+    </form>
+  </div>
+
+  <!-- WORKING SCRIPT -->
+  <script>
+    document.getElementById('studentRegisterForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const dob = document.getElementById('dob').value;
+      const gender = document.getElementById('gender').value;
+      const address = document.getElementById('address').value;
+
+      try {
+        const res = await fetch('http://localhost:3000/register-student', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ firstName, lastName, dob, gender, address })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          alert("✅ " + data.message);
+          this.reset();
+        } else {
+          alert("❌ " + data.message);
+        }
+      } catch (err) {
+        alert("⚠️ Could not connect to server.");
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

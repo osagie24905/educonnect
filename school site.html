@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osagie Academy - Excellence in Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS for elements that need more styling */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .primary-bg {
+            background-color: #3b82f6;
+        }
+        
+        .secondary-bg {
+            background-color: #10b981;
+        }
+        
+        .floating-btn {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .section-divider {
+            height: 100px;
+            background: linear-gradient(to bottom right, transparent 49%, white 50%), 
+                        linear-gradient(to top right, white 49%, transparent 50%);
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center">
+                            <i class="fas fa-graduation-cap text-blue-500 text-3xl mr-2"></i>
+                            <span class="text-xl font-bold text-gray-800">Osagie Academy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+               <div class="ml-10 flex items-center space-x-4">
+  <a href="#home" class="text-blue-600 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+  <a href="#primary" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Primary</a>
+  <a href="#secondary" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Secondary</a>
+
+  <!-- ✅ New Event and News links -->
+  <a href="#events" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Event</a>
+  <a href="#news" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">News</a>
+
+  <a href="#admissions" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Admissions</a>
+  <a href="#contact" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+  
+  
+
+  <!-- Login dropdown stays here -->
+ <a href="loginpage.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">
+  Login
+</a>
+
+    <div id="loginMenu" class="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-md hidden z-50">
+      <a href="admine.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Admin</a>
+      <a href="teacher-dashboard.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Teacher</a>
+      <a href="student page.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Student</a>
+      <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Parent</a>
+    </div>
+    <a href="#about" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About Us</a>
+  </div>
+</div>
+
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#primary" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Primary</a>
+                <a href="#secondary" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Secondary</a>
+                <a href="#about" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">About Us</a>
+                <a href="#admissions" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Admissions</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                <!-- Login Dropdown - Mobile -->
+<div class="relative">
+  <span class="block px-3 py-2 text-gray-700 font-medium">Login</span>
+  <div class="bg-white shadow-md rounded-md mt-1">
+    <a href="admine.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Admin</a>
+    <a href="teacher-dashboard.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Teacher</a>
+    <a href="student page.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Student</a>
+    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Parent</a>
+  </div>
+</div>
+
+                <div class="relative">
+  <button class="w-full text-left px-3 py-2 text-gray-700 hover:text-blue-600 focus:outline-none">
+    Login <i class="fas fa-caret-down ml-1"></i>
+  </button>
+  <div class="bg-white shadow-md rounded-md mt-1">
+    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Admin</a>
+    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Teacher</a>
+    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Student</a>
+    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Parent</a>
+    <!-- Login Section (Mobile) -->
+<div class="relative">
+  <button class="w-full text-left px-3 py-2 text-gray-700 hover:text-blue-600 focus:outline-none">
+    Login
+  </button>
+  <div class="bg-white shadow-md rounded-md mt-1">
+    <a href="admine.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Admin</a>
+    <a href="teacher-dashboard.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Teacher</a>
+    <a href="student page.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Student</a>
+    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Parent</a>
+  </div>
+</div>
+
+  </div>
+</div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero pt-20 pb-32 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center pt-16 md:pt-24">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Welcome to Osagie Academy</h1>
+                <p class="text-xl md:text-2xl mb-8">Nurturing Future Leaders Through Quality Education</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#primary" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                        <i class="fas fa-child mr-2"></i> Primary School
+                    </a>
+                    <a href="#secondary" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                        <i class="fas fa-user-graduate mr-2"></i> Secondary School
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Facts -->
+    <div class="bg-gray-100 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-calendar-alt text-blue-500 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Established</h3>
+                    <p class="text-gray-600">Since 1995</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-users text-blue-500 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Students</h3>
+                    <p class="text-gray-600">1200+</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-chalkboard-teacher text-blue-500 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Teachers</h3>
+                    <p class="text-gray-600">85+ Qualified</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-trophy text-blue-500 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Awards</h3>
+                    <p class="text-gray-600">25+ National</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Primary School Section -->
+    <section id="primary" class="py-20 bg-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Primary School</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto">Our primary school provides a nurturing environment where young minds are encouraged to explore, discover, and develop a lifelong love for learning.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1606761568499-6d2451b23c66?ixlib=rb-4.0.3" alt="Primary School Students" class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+                <div>
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-3">Our Approach</h3>
+                        <p class="text-gray-700 mb-4">At Osagie Academy Primary, we blend the best of traditional teaching methods with innovative educational approaches to create a stimulating learning environment.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>Child-centered learning approach</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>Interactive digital classrooms</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>Special focus on literacy and numeracy</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>Creative arts and physical education programs</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-blue-800 mb-3">Key Features</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-heart text-blue-500 mr-2"></i>
+                                <span>Small class sizes</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-heart text-blue-500 mr-2"></i>
+                                <span>After-school clubs</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-heart text-blue-500 mr-2"></i>
+                                <span>Special needs support</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-heart text-blue-500 mr-2"></i>
+                                <span>Parent-teacher collaboration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <a href="#contact" class="primary-bg hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-flex items-center">
+                    <i class="fas fa-envelope mr-2"></i> Enquire Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Secondary School Section -->
+    <section id="secondary" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-green-800 mb-4">Secondary School</h2>
+                <div class="w-20 h-1 bg-green-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto">Preparing students for academic excellence and responsible citizenship through a rigorous curriculum and diverse extracurricular programs.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="order-2 md:order-1">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-green-800 mb-3">Academic Excellence</h3>
+                        <p class="text-gray-700 mb-4">Our secondary school offers a comprehensive curriculum designed to challenge students intellectually while supporting their personal growth and development.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>STEM-focused programs with modern laboratories</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>Advanced placement courses for gifted students</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>University preparation and career guidance</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>Foreign language programs</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-green-800 mb-3">Beyond Academics</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-futbol text-green-500 mr-2"></i>
+                                <span>Sports programs</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-music text-green-500 mr-2"></i>
+                                <span>Music & arts</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-robot text-green-500 mr-2"></i>
+                                <span>Robotics club</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-globe-africa text-green-500 mr-2"></i>
+                                <span>Community service</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3" alt="Secondary School Students" class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <a href="#contact" class="secondary-bg hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-flex items-center">
+                    <i class="fas fa-info-circle mr-2"></i> Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">What Parents Say</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"Osagie Academy has provided my child with an exceptional foundation. The teachers are dedicated and the learning environment is nurturing yet challenging."</p>
+                    <div class="flex items-center">
+                        <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-blue-500 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Mrs. Adebayo</h4>
+                            <p class="text-gray-600 text-sm">Primary Parent</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"The transition from primary to secondary at Osagie Academy was seamless. The academic rigor combined with character development is impressive."</p>
+                    <div class="flex items-center">
+                        <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-blue-500 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Mr. Okafor</h4>
+                            <p class="text-gray-600 text-sm">Secondary Parent</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"The extracurricular programs at Osagie Academy have helped my daughter discover her passion for robotics. The facilities are top-notch!"</p>
+                    <div class="flex items-center">
+                        <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-blue-500 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Dr. Ibrahim</h4>
+                            <p class="text-gray-600 text-sm">Secondary Parent</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about" class="py-20 bg-blue-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">About Osagie Academy</h2>
+                    <p class="text-lg mb-6">Founded in 1995, Osagie Academy has grown from a small community school to one of the most respected educational institutions in the region.</p>
+                    <p class="mb-8">Our mission is to provide a holistic education that develops intellectual, physical, emotional, and social competencies in our students, preparing them to be responsible global citizens.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-blue-700 p-4 rounded-lg">
+                            <h3 class="font-bold mb-2">Our Vision</h3>
+                            <p class="text-sm">To be a leading institution in academic excellence and character development.</p>
+                        </div>
+                        <div class="bg-blue-700 p-4 rounded-lg">
+                            <h3 class="font-bold mb-2">Our Values</h3>
+                            <p class="text-sm">Integrity, Excellence, Creativity, and Respect for all.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-white p-8 rounded-lg shadow-xl text-gray-800">
+                        <h3 class="text-2xl font-bold mb-6 text-center text-blue-800">School Achievements</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-trophy text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Top National Exam Results</h4>
+                                    <p class="text-sm">Consistently ranked among top 5 schools in national examinations</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-medal text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Science Olympiad Champions</h4>
+                                    <p class="text-sm">3-time national champions in STEM competitions</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-award text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Green School Award</h4>
+                                    <p class="text-sm">Recognized for environmental sustainability initiatives</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Admissions Section -->
+<section id="admissions" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Admissions</h2>
+      <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
+      <p class="text-lg text-gray-700 max-w-3xl mx-auto">Join our vibrant academic community by following our seamless admissions process designed for both primary and secondary students.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <div>
+       <!-- How to Apply Section -->
+<h3 class="text-2xl font-bold text-blue-700 mb-4">How to Apply</h3>
+<ul class="list-disc pl-6 text-gray-700 space-y-2">
+  <li>Obtain and fill the application form (apply online or at the school).</li>
+  <li>Submit the completed form with required documents.</li>
+  <li>Attend an interview or entrance exam (as scheduled).</li>
+  <li>Receive admission decision within 1 week.</li>
+</ul>
+
+<!-- Online Form Button -->
+<a href="admission.html" class="inline-block mb-3 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 transition duration-300">
+  Online Application Form
+</a>
+
+<!-- Download Form Button -->
+
+</a>
+
+
+        <a href="#" class="mt-6 inline-block bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300">Download Application Form</a>
+      </div>
+
+      <div>
+        <h3 class="text-2xl font-bold text-blue-700 mb-4">Requirements</h3>
+        <ul class="list-disc pl-6 text-gray-700 space-y-2">
+          <li>Birth certificate or age declaration.</li>
+          <li>2 recent passport photographs.</li>
+          <li>Previous school reports or transcripts.</li>
+          <li>Completed application form.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Contact Us</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto">We'd love to hear from you! Reach out for admissions, questions, or to schedule a school tour.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Your name">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Your email">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Your phone number">
+                        </div>
+                        <div>
+                            <label for="interest" class="block text-sm font-medium text-gray-700 mb-1">I'm interested in</label>
+                            <select id="interest" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select an option</option>
+                                <option value="primary">Primary School Admission</option>
+                                <option value="secondary">Secondary School Admission</option>
+                                <option value="tour">School Tour</option>
+                                <option value="other">Other Inquiry</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Your message"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="primary-bg hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg w-full transition duration-300">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div>
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Our Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Address</h4>
+                                    <p class="text-gray-700">12 Education Boulevard, Ikeja, Lagos, Nigeria</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Phone</h4>
+                                    <p class="text-gray-700">+234 801 234 5678 (Admissions)</p>
+                                    <p class="text-gray-700">+234 802 345 6789 (Administration)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Email</h4>
+                                    <p class="text-gray-700">admissions@osagieacademy.edu.ng</p>
+                                    <p class="text-gray-700">info@osagieacademy.edu.ng</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-clock text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Office Hours</h4>
+                                    <p class="text-gray-700">Monday - Friday: 8:00 AM - 4:00 PM</p>
+                                    <p class="text-gray-700">Saturday: 9:00 AM - 1:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold text-gray-800 mb-4">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition duration-300">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500 transition duration-300">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-pink-600 text-white p-3 rounded-full hover:bg-pink-700 transition duration-300">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="bg-blue-700 text-white p-3 rounded-full hover:bg-blue-800 transition duration-300">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition duration-300">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map -->
+    <div class="h-96 w-full">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.952912260219!2d3.375295414266372!3d6.527822645325475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d5667b4a7a5%3A0x1df5d6a6e8a6d7a1!2sIkeja%2C%20Lagos!5e0!3m2!1sen!2sng!4v1620000000000!5m2!1sen!2sng" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-graduation-cap text-blue-500 text-3xl mr-2"></i>
+                        <span class="text-xl font-bold">Osagie Academy</span>
+                    </div>
+                    <p class="text-gray-400">Providing quality education since 1995. Nurturing future leaders through academic excellence and character development.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#primary" class="text-gray-400 hover:text-white transition duration-300">Primary School</a></li>
+                        <li><a href="#secondary" class="text-gray-400 hover:text-white transition duration-300">Secondary School</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Admissions</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Application Process</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Tuition & Fees</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Scholarships</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">School Calendar</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">FAQs</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for the latest news and updates.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-900 w-full">
+                        <button type="submit" class="primary-bg hover:bg-blue-700 px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 Osagie Academy. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fixed bottom-8 right-8">
+        <a href="#contact" class="floating-btn bg-blue-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition duration-300">
+            <i class="fas fa-comment-dots text-xl"></i>
+        </a>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    mobileMenu.classList.add('hidden');
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission (example)
+        const contactForm = document.querySelector('form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will contact you soon.');
+                this.reset();
+            });
+            
+
+        }
+    </script>
+    <script>
+const backToTopBtn = document.getElementById('backToTopBtn');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    backToTopBtn.classList.remove('hidden');
+  } else {
+    backToTopBtn.classList.add('hidden');
+  }
+});
+
+backToTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+    </script>
+    <!-- Back to Top Button -->
+<button id="backToTopBtn" class="hidden fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 z-50">
+  <i class="fas fa-arrow-up"></i>
+</button>
+<script>
+  const toggle = document.getElementById('loginToggle');
+  const menu = document.getElementById('loginMenu');
+
+  // Toggle dropdown when Login is clicked
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    menu.classList.toggle('hidden');
+  });
+
+  // Hide dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!document.getElementById('loginDropdown').contains(e.target)) {
+      menu.classList.add('hidden');
+    }
+  });
+
+  // Hide dropdown on Escape key press
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      menu.classList.add('hidden');
+    }
+  });
+</script>
+
+</body>
+</html>
+

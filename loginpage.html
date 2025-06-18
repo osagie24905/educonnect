@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect | Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .role-selector input[type="radio"]:checked + label {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .floating-label {
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+        input:focus ~ .floating-label,
+        input:not(:placeholder-shown) ~ .floating-label {
+            transform: translateY(-1.5rem) scale(0.85);
+            color: #3b82f6;
+        }
+        .password-toggle {
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-md">
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-center">
+                <div class="flex justify-center mb-4">
+                    <div class="bg-white p-3 rounded-full shadow-lg">
+                        <i class="fas fa-graduation-cap text-blue-600 text-3xl"></i>
+                    </div>
+                </div>
+                <h1 class="text-2xl font-bold text-white">Welcome to EduConnect</h1>
+                <p class="text-blue-100 mt-1">Please login to continue</p>
+            </div>
+            
+            <!-- Role Selection -->
+            <div class="px-6 pt-6">
+                <div class="role-selector grid grid-cols-3 gap-2 mb-6">
+                    <input type="radio" name="role" id="student" value="student" class="hidden peer/student" checked>
+                    <label for="student" class="flex flex-col items-center p-3 border border-gray-200 rounded-lg cursor-pointer transition-all duration-200 peer-checked/student:border-blue-500 peer-checked/student:bg-blue-50">
+                        <i class="fas fa-user-graduate text-blue-600 text-2xl mb-2"></i>
+                        <span class="text-sm font-medium">Student</span>
+                    </label>
+                    
+                    <input type="radio" name="role" id="teacher" value="teacher" class="hidden peer/teacher">
+                    <label for="teacher" class="flex flex-col items-center p-3 border border-gray-200 rounded-lg cursor-pointer transition-all duration-200 peer-checked/teacher:border-blue-500 peer-checked/teacher:bg-blue-50">
+                        <i class="fas fa-chalkboard-teacher text-indigo-600 text-2xl mb-2"></i>
+                        <span class="text-sm font-medium">Teacher</span>
+                    </label>
+                    
+                    <input type="radio" name="role" id="admin" value="admin" class="hidden peer/admin">
+                    <label for="admin" class="flex flex-col items-center p-3 border border-gray-200 rounded-lg cursor-pointer transition-all duration-200 peer-checked/admin:border-blue-500 peer-checked/admin:bg-blue-50">
+                        <i class="fas fa-user-shield text-purple-600 text-2xl mb-2"></i>
+                        <span class="text-sm font-medium">Admin</span>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Login Form -->
+            <div class="px-6 pb-8">
+                <form id="loginForm" class="space-y-5">
+                    <div class="relative">
+                        <input type="text" id="username" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition peer" placeholder=" " required>
+                        <label for="username" class="floating-label absolute left-4 top-3.5 text-gray-500 bg-white px-1">Username or Email</label>
+                    </div>
+                    
+                    <div class="relative">
+                        <input type="password" id="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition peer" placeholder=" " required>
+                        <label for="password" class="floating-label absolute left-4 top-3.5 text-gray-500 bg-white px-1">Password</label>
+                        <button type="button" class="password-toggle absolute right-3 text-gray-400 hover:text-gray-600" onclick="togglePassword()">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input id="remember" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="remember" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                        </div>
+                        <a href="#" class="text-sm text-blue-600 hover:text-blue-800">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-3 px-4 rounded-lg font-medium hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 flex items-center justify-center">
+                        <span id="loginText">Login as Student</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </form>
+                
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-gray-600">Don't have an account? <a href="#" class="text-blue-600 font-medium hover:text-blue-800">Contact support</a></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-6 text-center text-sm text-gray-500">
+            <p>© 2023 EduConnect. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Update login button text based on selected role
+        const roleInputs = document.querySelectorAll('input[name="role"]');
+        const loginText = document.getElementById('loginText');
+        
+        roleInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                loginText.textContent = `Login as ${this.value.charAt(0).toUpperCase() + this.value.slice(1)}`;
+            });
+        });
+        
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.querySelector('.password-toggle i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+        
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const role = document.querySelector('input[name="role"]:checked').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+                if (role === 'admin' && username === 'md' && password === '1234') {
+        alert('Login successful as Admin!');
+        window.location.href = 'admin.html'; // <- Make sure this matches your actual file
+    } else {
+       
+    }
+
+            
+            // Here you would typically send this data to your backend
+            console.log({
+                role,
+                username,
+                password,
+                remember
+            });
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Authenticating...';
+            
+            // Simulate API call
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+                
+                // For demo purposes, just show an alert
+                alert(`Successfully logged in as ${role}!\nUsername: ${username}`);
+                
+                // In a real app, you would redirect here
+                // window.location.href = `/${role}-dashboard.html`;
+            }, 1500);
+        });
+    </script>
+  
+<script>
+document.getElementById('loginForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const role = document.querySelector('input[name="role"]:checked').value;
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    try {
+        const response = await fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password, role }) // ✅ includes role
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert(`✅ Logged in as ${role} (${username})`);
+
+            if (role === 'admin') {
+                window.location.href = 'admin.html';
+            } else if (role === 'teacher') {
+                window.location.href = 'teacher.html';
+            } else if (role === 'student') {
+                window.location.href = 'student.html';
+            }
+        } else {
+            alert(`❌ ${data.message}`);
+        }
+    } catch (error) {
+        alert("⚠️ Could not connect to server.");
+        console.error(error);
+    }
+});
+</script>
+
+</body>
+</html>
+
+</body>
+</html>
