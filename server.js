@@ -252,9 +252,12 @@ app.delete('/delete-student/:id', (req, res) => {
     res.json({ message: '✅ Student deleted successfully' });
   });
 });
+// Add this route so the homepage works
+app.get('/', (req, res) => {
+  res.send('✅ Welcome to EduConnect API! Your server is live.');
+});
 
 // Start server
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
 });
-// Trigger redeploy
