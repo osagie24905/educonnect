@@ -87,7 +87,7 @@ let currentPage = 1;
 const limit = 5;
 
 async function loadApplications() {
-  const res = await fetch('http://localhost:3000/applications');
+  const res = await fetch('https://educonnect-lxp8.onrender.com');
   const applications = await res.json();
   const tbody = document.getElementById('applicationsBody');
   const selectedGrade = document.getElementById('gradeFilter').value;
