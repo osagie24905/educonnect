@@ -1,3 +1,4 @@
+
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
@@ -201,6 +202,17 @@ app.get('/students', (req, res) => {
   });
 });
 
+// ✅ NEW ROUTE: used by frontend to fetch applications
+app.get('/api/applications', (req, res) => {
+  db.all(`SELECT * FROM students ORDER BY id DESC`, [], (err, rows) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Failed to fetch applications' });
+    }
+    res.json(rows);
+  });
+});
+
 app.get('/applications', (req, res) => {
   db.all(`SELECT * FROM students ORDER BY id DESC`, [], (err, rows) => {
     if (err) {
@@ -252,7 +264,8 @@ app.delete('/delete-student/:id', (req, res) => {
     res.json({ message: '✅ Student deleted successfully' });
   });
 });
-// Add this route so the homepage works
+
+// Homepage
 app.get('/', (req, res) => {
   res.send('✅ Welcome to EduConnect API! Your server is live.');
 });
